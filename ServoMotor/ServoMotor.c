@@ -29,14 +29,17 @@ int main() {
     config_pwm(); // Chama função config_pwm para iniciar o pwm configurado
 
     // Ajuste para 180° (2400µs) e aguarda 5s
+    printf("Movendo para 180º \n");
     flange_config(2400);
     sleep_ms(5000);
 
     // Ajuste para 90° (1470µs) e aguarda 5s
+    printf("Movendo para 90º \n");
     flange_config(1470);
     sleep_ms(5000);
 
     // Ajuste para 0° (500µs) e aguarda 5s
+    printf("Movendo para 0º \n");
     flange_config(500);
     sleep_ms(5000);
 
@@ -44,7 +47,7 @@ int main() {
     while (true) {
         // Movendo de 0° para 180°
         for (uint16_t pulse = 500; pulse <= 2400; pulse += 5) {
-            set_servo_pulse(pulse);
+            flange_config(pulse);
             sleep_ms(10);
         }
 
@@ -52,7 +55,7 @@ int main() {
 
         // Movendo de 180° para 0°
         for (uint16_t pulse = 2400; pulse >= 500; pulse -= 5) {
-            set_servo_pulse(pulse);
+            flange_config(pulse);
             sleep_ms(10);
         }
 
